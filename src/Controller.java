@@ -29,7 +29,7 @@ public class Controller{
 	
 	public void paintModels(Graphics g) {
 		for (int i = 0; i < duck.length; i++){
-		duck[i].draw(g);}
+		duck[i].draw(g, v);}
 
 
 

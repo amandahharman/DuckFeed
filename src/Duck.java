@@ -1,38 +1,27 @@
 import java.awt.Color;
+
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+
+import javax.swing.ImageIcon;
 
 public class Duck {
 	private int xLeft;
 	private int yTop;
-	private Color duckColor;
-	private static final int DIAMETER = 20;
-
+	private static final int DIAMETER = 80;
+	private ImageIcon duckImage;
 	
-	/**
-	 * Constructs a ring.
-	 * @param x , the x-coordinate for the top-left corner of the Ellipse object
-	 * @param y , the y-coordinate for the top-left corner of the Ellipse object
-	 * @param color , the color for the circle to be drawn in
-	 */
+	
 	public Duck(int x, int y, Color color)
 	{
 		xLeft = x;
 		yTop = y;	
-		duckColor = color;
+		duckImage =  new ImageIcon("duck .png");
 	}
-	/**
-	 * Draws the ring
-	 * @param g2 , the graphics context
-	 */
-	public void draw(Graphics g)
-	{
-//		Ellipse2D.Double duck = new Ellipse2D.Double(xLeft, yTop, DIAMETER, DIAMETER);
-		
-		g.setColor(duckColor);
-		g.fillOval(xLeft, yTop, DIAMETER, DIAMETER);
 
+	public void draw(Graphics g, Viewer v)
+	{
+		duckImage.paintIcon(v, g, xLeft, yTop);
 
 	}
 	public int getX() {
