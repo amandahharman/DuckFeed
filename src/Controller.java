@@ -31,8 +31,6 @@ public class Controller{
 		for (int i = 0; i < duck.length; i++){
 		duck[i].draw(g, v);}
 
-
-
 	}
 
 	public void moveDucks(){
