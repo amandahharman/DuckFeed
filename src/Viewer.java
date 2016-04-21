@@ -16,6 +16,7 @@ public class Viewer extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected Controller controller;
+	protected Player player;
 	
 	
 	public static void main(String[] args) {
@@ -29,8 +30,10 @@ public class Viewer extends JFrame{
 		setPreferredSize(new Dimension(600, 600));
 
 		ViewPanel panel = new ViewPanel();
+		Player player = new Player();
 		getContentPane().setLayout(new BorderLayout());  
 		getContentPane().add("Center", panel);
+		getContentPane().add("South", player);
 
 		controller = new Controller(this);
 
