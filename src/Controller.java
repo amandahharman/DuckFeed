@@ -16,6 +16,7 @@ public class Controller{
 	private int x, y;
 	private final int FLOOR = 300;
 
+
 	
 
 	public Controller(Viewer v){
@@ -23,6 +24,7 @@ public class Controller{
 		for (int i = 0; i < duck.length; i++){
 			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
 		}
+
 		
 		rollFrames();
 	}
@@ -30,6 +32,8 @@ public class Controller{
 	public void paintModels(Graphics g) {
 		for (int i = 0; i < duck.length; i++){
 		duck[i].draw(g, v);}
+
+
 
 	}
 
