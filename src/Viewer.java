@@ -2,31 +2,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-
-
 public class Viewer extends JFrame{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected Controller controller;
 	protected Player player;
-	
-	
+
+
 	public static void main(String[] args) {
 		new Viewer();
 
 	}
 
 	public Viewer(){
-	    super("My Duck Feed");
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("My Duck Feed");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(600, 600));
 
 		ViewPanel panel = new ViewPanel();
@@ -37,10 +31,10 @@ public class Viewer extends JFrame{
 
 		controller = new Controller(this);
 
-		
+
 		pack();
-	    setVisible(true);
-		
+		setVisible(true);
+
 	}
 
 	private class ViewPanel extends JPanel {
@@ -53,8 +47,8 @@ public class Viewer extends JFrame{
 			setPreferredSize(new Dimension(600, 600));
 			setBackground(new Color(64, 224,208));
 			setFocusable(true);
-
-	
+			addMouseMotionListener(new MyMotionListener());
+			addMouseListener(new MyMouseActionListener(controller, player));
 		}
 
 		@Override
@@ -66,7 +60,9 @@ public class Viewer extends JFrame{
 		}
 
 	}
-	}
+
+
+}
 
 	
 	
