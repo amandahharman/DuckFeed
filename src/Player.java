@@ -41,4 +41,5 @@ public class Player extends JPanel{
 	public void setScore(int score) {
 		this.score = score;
 	}
+
 }
