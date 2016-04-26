@@ -7,12 +7,13 @@ public class Controller{
 	protected Viewer v;
 	private int timeDelay = 4;
 	private Duck[] duck = new Duck[1];
-	private final int SCREENWIDTH = 600, SCREENHEIGHT = 600;
+	private final int SCREENWIDTH = 800, SCREENHEIGHT = 800;
 	private int xDirection = 1; //Right if positive, Left if negative
 	private int yDirection = 1;// Down if positive, Up if negative
 	private int x, y;
 	private final int FLOOR = 300;
 	private Scope scope;
+
 	
 	public Controller(Viewer v){
 		
@@ -21,6 +22,7 @@ public class Controller{
 			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
 		}
 		setScope(0,0);
+
 		rollFrames();
 
 	}
@@ -30,7 +32,6 @@ public class Controller{
 			duck[i].draw(g, v);
 		}
 		scope.draw(g);
-
 	}
 
 	public void moveDucks(){
@@ -50,27 +51,21 @@ public class Controller{
 			}
 			if (x + xDirection + duck[i].getDiameter() >= SCREENWIDTH){
 				xDirection = -1;
+
 			}
 
 
-			if (x + xDirection + duck[i].getDiameter() < SCREENWIDTH && xDirection > 0 && Math.random() >.5){
+			if (x + xDirection + duck[i].getDiameter() < SCREENWIDTH && xDirection > 0){
 				duck[i].setX(x+xDirection);
 				duck[i].setY(y+ yDirection);
-
+				duck[i].duckMovesRight();
 			}
-			if (x + xDirection + duck[i].getDiameter() < SCREENWIDTH && xDirection > 0 && Math.random() <=.5){
-				duck[i].setX(x+xDirection);
-				duck[i].setY(y+ yDirection);}
-
-
-			if  (x + xDirection  < SCREENWIDTH && xDirection < 0 && x>0 && Math.random() >.5){
+			
+			if  (x + xDirection  < SCREENWIDTH && xDirection < 0 && x>0){
 				duck[i].setX(x + xDirection);
 				duck[i].setY(y+ yDirection);
+				duck[i].duckMovesLeft();
 			}
-			if  (x + xDirection  < SCREENWIDTH && xDirection < 0 && x>0 && Math.random() <=.5){
-				duck[i].setX(x + xDirection);
-				duck[i].setY(y + yDirection);
-			}		
 		}
 	}
 	

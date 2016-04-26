@@ -18,7 +18,7 @@ public class Duck {
 		
 		xLeft = x;
 		yTop = y;	
-		duckImage =  new ImageIcon("duck .png");
+		duckImage =  new ImageIcon("duckFlipped.png");
 	}
 
 	public void draw(Graphics g, Viewer v)
@@ -58,5 +58,12 @@ public class Duck {
 	
 	public int getHeight(){
 		return HEIGHT;
+	}
+	
+	public void duckMovesRight(){
+		duckImage = new ImageIcon("duckFlipped.png");
+	}
+	public void duckMovesLeft(){
+		duckImage = new ImageIcon("duck .png");
 	}
 }

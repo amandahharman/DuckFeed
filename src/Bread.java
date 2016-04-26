@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 public class Bread {
 	
 	private int x,y;
-	private int counter = 9;
 	
 	public Bread(int x, int y){
 		
