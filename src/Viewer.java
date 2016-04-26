@@ -45,6 +45,7 @@ public class Viewer extends JFrame{
 		private static final long serialVersionUID = 8651888917167259520L;
 		private ImageIcon cloud;
 		private ImageIcon sun;
+		private ImageIcon tree;
 
 		public ViewPanel() {
 			setPreferredSize(new Dimension(800, 800));
@@ -59,10 +60,12 @@ public class Viewer extends JFrame{
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			cloud = new ImageIcon("cloud 3.png");
-			sun = new ImageIcon("sun.png");
-			cloud.paintIcon(this, g, 30,30);
-			sun.paintIcon(this, g, 600, 40);
+			sun = new ImageIcon("sunny.png");
+			tree = new ImageIcon("tree.png");
+
+			sun.paintIcon(this, g, 530, 40);
+			tree.paintIcon(this, g, 30, 200);
+			
 			
 			controller.paintModels(g);
 			controller.rollFrames();
