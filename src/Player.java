@@ -1,7 +1,12 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -17,6 +22,8 @@ public class Player extends JPanel{
 	private int score;
 	private Boolean gameOver = false;
 	private Font myFont;
+	protected AudioClip clapping;
+	protected AudioClip breadThrown;
 
 
 	public Player(){
@@ -29,6 +36,8 @@ public class Player extends JPanel{
 			x += 8;
 			bread.add(new Bread(x,y));
 				}
+		this.clapping = getAudioClip("0814.wav");
+		this.breadThrown = getAudioClip("0735.wav");
 
 
 	}
@@ -47,8 +56,10 @@ public class Player extends JPanel{
 			bread.get(i).draw(g);
 		}
 		if(counter <= 0){
+			gameOver = true;
 			summary(g);
 		}
+		
 		
 	}
 	
@@ -62,6 +73,7 @@ public class Player extends JPanel{
 	
 	public void decreaseBread(){
 		counter -= 1;
+		breadThrown.play();
 	}
 	
 	public void mouseClicked(){
@@ -78,9 +90,22 @@ public class Player extends JPanel{
 	}
 	
 	public void summary(Graphics g){
+		clapping.play();
 		g.setColor(Color.RED);
 		g.setFont(myFont);
 		g.drawString("GAME OVER", 320, 40);
 		g.drawString("SCORE:  " + score, 325, 60);
 	}
+	
+    public AudioClip getAudioClip(String filename) {
+        URL url = null;
+        try {
+            File file = new File(filename);
+            if (file.canRead()) url = file.toURI().toURL();
+        }
+        catch (MalformedURLException e) { e.printStackTrace(); }
+        if (url == null) 
+        	throw new RuntimeException("audio " + filename + " not found");
+        return Applet.newAudioClip(url);
+    }
 }

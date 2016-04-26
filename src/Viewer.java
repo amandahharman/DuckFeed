@@ -1,3 +1,4 @@
+import java.applet.AudioClip;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,8 +13,7 @@ public class Viewer extends JFrame{
 	private static final long serialVersionUID = 1L;
 	protected Controller controller;
 	protected Player player;
-
-
+	protected AudioClip begin;
 
 	public static void main(String[] args) {
 		new Viewer();
@@ -25,10 +25,12 @@ public class Viewer extends JFrame{
 		super("My Duck Feed");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(800, 800));
-		
+
+	
 		player = new Player();
 		controller = new Controller(this);
-
+		this.begin = player.getAudioClip("duckBegin.wav");
+		begin.play();
 		ViewPanel panel = new ViewPanel();
 
 		
@@ -43,7 +45,7 @@ public class Viewer extends JFrame{
 	private class ViewPanel extends JPanel {
 		
 		private static final long serialVersionUID = 8651888917167259520L;
-		private ImageIcon cloud;
+
 		private ImageIcon sun;
 		private ImageIcon tree;
 
@@ -68,7 +70,10 @@ public class Viewer extends JFrame{
 			
 			
 			controller.paintModels(g);
-			controller.rollFrames();
+
+			if (player.getGameOver() == false){
+		
+			controller.rollFrames();}
 		}
 	}
 }

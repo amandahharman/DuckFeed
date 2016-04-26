@@ -22,9 +22,7 @@ public class Controller{
 			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
 		}
 		setScope(0,0);
-
-		rollFrames();
-
+	
 	}
 
 	public void paintModels(Graphics g) {
