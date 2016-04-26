@@ -5,14 +5,17 @@ import java.awt.Rectangle;
 
 
 public class Bread {
+	
 	private int x,y;
+	private int counter = 9;
 	
 	public Bread(int x, int y){
+		
 		this.x = x;
 		this.y = y;
+		
 	}
-	public void draw(Graphics g)
-	{
+	public void draw(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		Rectangle slice = new Rectangle(x, y, 5, 40);
 		
@@ -27,5 +30,4 @@ public class Bread {
 	public int getY(){
 		return y;
 	}
-	
 }

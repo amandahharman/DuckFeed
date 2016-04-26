@@ -1,30 +1,26 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.Random;
 
-
-
 public class Controller{
-	private Viewer v;
+	
+	protected Viewer v;
 	private int frameRate = 72; // frames per second
-	private int timeDelay = 300 / frameRate;//  milliseconds per frame
+	private int timeDelay = 1000 / frameRate;//  milliseconds per frame
 	private Duck[] duck = new Duck[1];
 	private final int SCREENWIDTH = 600, SCREENHEIGHT = 600;
 	private int xDirection = 1; //Right if positive, Left if negative
 	private int yDirection = 1;// Down if positive, Up if negative
 	private int x, y;
 	private final int FLOOR = 300;
-
+	private int deltaX, deltaY, overlapX, overlapY;
+	
 	public Controller(Viewer v){
+		
 		this.v = v;
 		for (int i = 0; i < duck.length; i++){
 			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
 		}
-
-
 		rollFrames();
 	}
 
@@ -74,9 +70,22 @@ public class Controller{
 			}		
 		}
 	}
-
-
-
+	
+	public boolean touches() {
+		for (int i = 0; i < duck.length; i++){
+			deltaX = Math.abs((duck[i].getHeight() + duck[i].getDiameter() / 2) - (x + duck[i].getDiameter() / 2));
+			deltaY = Math.abs((duck[i].getY() + duck[i].getHeight()/ 2) - (y + duck[i].getHeight() / 2));
+			overlapX = duck[i].getDiameter() / 2 + duck[i].getDiameter() / 2;
+			overlapY = duck[i].getHeight()/ 2 + duck[i].getHeight() / 2; }
+														
+		if (deltaX >= overlapX)
+			return false;
+		if (deltaY >= overlapY)
+			return false;
+		else{
+		return true;}
+	}
+	
 	public void rollFrames() {
 		try {
 			Thread.sleep(timeDelay);
@@ -86,6 +95,4 @@ public class Controller{
 			System.out.println(e.toString());
 		}
 	}
-
-
 }

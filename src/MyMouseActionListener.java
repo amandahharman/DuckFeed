@@ -2,22 +2,27 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MyMouseActionListener implements MouseListener {
-	private Controller c;
-	private Player p;
+	
+	protected Controller c;
+	protected Player p;
 
 	public MyMouseActionListener(Controller c, Player p){
+		
 		this.c = c;
 		this.p = p;
 	}
-	@Override
+
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Clicked");
+		if(c.touches()){
+			p.awardPoints();
+		}
+		p.decreaseBread();
+		p.mouseClicked();
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

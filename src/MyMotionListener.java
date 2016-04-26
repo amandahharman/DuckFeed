@@ -2,11 +2,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 public class MyMotionListener implements MouseMotionListener {
+	
+	protected Player p;
+	protected Controller c;
+	
+	public MyMotionListener(Controller c, Player p){
+		
+		this.c = c;
+		this.p = p;
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
