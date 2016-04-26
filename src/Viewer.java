@@ -15,6 +15,7 @@ public class Viewer extends JFrame{
 	protected Player player;
 
 
+
 	public static void main(String[] args) {
 		new Viewer();
 
@@ -28,7 +29,9 @@ public class Viewer extends JFrame{
 		
 		player = new Player();
 		controller = new Controller(this);
+
 		ViewPanel panel = new ViewPanel();
+
 		
 		getContentPane().setLayout(new BorderLayout());  
 		getContentPane().add("Center", panel);
@@ -50,6 +53,7 @@ public class Viewer extends JFrame{
 			setFocusable(true);
 			addMouseMotionListener(new MyMotionListener(controller, player));
 			addMouseListener(new MyMouseActionListener(controller, player));
+
 		}
 
 		@Override
@@ -62,6 +66,11 @@ public class Viewer extends JFrame{
 			sun.paintIcon(this, g, 400, 40);
 			
 			controller.paintModels(g);
+//			if (player.getGameOver()){
+//				g.drawString("GAME OVER", 300, 300 );
+//				g.drawString("SCORE: " + player.getScore(), 400, 300);
+//			}
+
 			controller.rollFrames();
 		}
 	}

@@ -13,7 +13,7 @@ public class MyMouseActionListener implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if(c.touches()){
+		if(c.duckHit(e.getX(), e.getY())){
 			p.awardPoints();
 		}
 		p.decreaseBread();

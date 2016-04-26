@@ -11,9 +11,11 @@ public class Player extends JPanel{
 	private final int WIDTH = 600, HEIGHT = 100;
 	private int x = WIDTH - 100;
 	private int y = HEIGHT - 90;
-	private int counter = 9;
+	private int counter = 10;
 	private static final long serialVersionUID = 1L;
 	private int score;
+	private Boolean gameOver = false;
+
 
 	public Player(){
 
@@ -37,6 +39,7 @@ public class Player extends JPanel{
 		for (int i = 0; i < counter; i++){
 			bread.get(i).draw(g);
 		}
+
 	}
 	
 	public int getScore() {
@@ -53,5 +56,15 @@ public class Player extends JPanel{
 	
 	public void mouseClicked(){
 		System.out.println("Clicked");
+	}
+	
+	public void gameStatus(){
+		if (counter == 0){
+			gameOver = true;
+		}
+	}
+	
+	public Boolean getGameOver(){
+		return gameOver;
 	}
 }

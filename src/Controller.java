@@ -5,15 +5,14 @@ import java.util.Random;
 public class Controller{
 	
 	protected Viewer v;
-	private int frameRate = 72; // frames per second
-	private int timeDelay = 1000 / frameRate;//  milliseconds per frame
+	private int timeDelay = 4;
 	private Duck[] duck = new Duck[1];
 	private final int SCREENWIDTH = 600, SCREENHEIGHT = 600;
 	private int xDirection = 1; //Right if positive, Left if negative
 	private int yDirection = 1;// Down if positive, Up if negative
 	private int x, y;
 	private final int FLOOR = 300;
-	private int deltaX, deltaY, overlapX, overlapY;
+	private Scope scope;
 	
 	public Controller(Viewer v){
 		
@@ -21,12 +20,16 @@ public class Controller{
 		for (int i = 0; i < duck.length; i++){
 			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
 		}
+		setScope(0,0);
 		rollFrames();
+
 	}
 
 	public void paintModels(Graphics g) {
 		for (int i = 0; i < duck.length; i++){
-			duck[i].draw(g, v);}
+			duck[i].draw(g, v);
+		}
+		scope.draw(g);
 
 	}
 
@@ -71,19 +74,19 @@ public class Controller{
 		}
 	}
 	
-	public boolean touches() {
+	
+	public Boolean duckHit(int eventX, int eventY){
 		for (int i = 0; i < duck.length; i++){
-			deltaX = Math.abs((duck[i].getHeight() + duck[i].getDiameter() / 2) - (x + duck[i].getDiameter() / 2));
-			deltaY = Math.abs((duck[i].getY() + duck[i].getHeight()/ 2) - (y + duck[i].getHeight() / 2));
-			overlapX = duck[i].getDiameter() / 2 + duck[i].getDiameter() / 2;
-			overlapY = duck[i].getHeight()/ 2 + duck[i].getHeight() / 2; }
-														
-		if (deltaX >= overlapX)
-			return false;
-		if (deltaY >= overlapY)
-			return false;
-		else{
-		return true;}
+			if ((eventX > duck[i].getX() && eventX < duck[i].getRightX())&& (eventY > duck[i].getY() && eventY < duck[i].getBottomY())){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	public void setScope(int x, int y){
+		scope = new Scope(x,y);
 	}
 	
 	public void rollFrames() {

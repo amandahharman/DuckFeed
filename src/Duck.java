@@ -7,8 +7,10 @@ public class Duck {
 	
 	private int xLeft;
 	private int yTop;
+	private int xRight;
+	private int yBottom;
 	private static final int DIAMETER = 80;
-	private static final int HEIGHT = 100;
+	private static final int HEIGHT = 70;
 	private ImageIcon duckImage;
 	
 	
@@ -40,6 +42,16 @@ public class Duck {
 		yTop= y;
 	}
 	
+	public int getRightX(){
+		xRight = Math.abs(xLeft + DIAMETER);
+		return xRight;
+	}
+	
+	public int getBottomY(){
+		yBottom = Math.abs(yTop + HEIGHT);
+		return yBottom;
+	}
+		
 	public int getDiameter(){
 		return DIAMETER;
 	}
