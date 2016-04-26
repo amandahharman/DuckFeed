@@ -8,9 +8,13 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
+/**
+ * Creates the player panel. 
+ * @author amandaharman
+ *
+ */
 public class Player extends JPanel{
 	
 	private ArrayList<Bread> bread = new ArrayList<Bread>();
@@ -25,7 +29,9 @@ public class Player extends JPanel{
 	protected AudioClip clapping;
 	protected AudioClip breadThrown;
 
-
+	/**
+	 * Sets up player panel.
+	 */
 	public Player(){
 
 		this.setBackground(new Color(50,205,50));
@@ -41,6 +47,10 @@ public class Player extends JPanel{
 
 
 	}
+	
+	/**
+	 * Draws the necessary strings and objects for player panel. Prints summary when game is over
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -63,32 +73,55 @@ public class Player extends JPanel{
 		
 	}
 	
+	/**
+	 * @return score 
+	 */
 	public int getScore() {
 		return score;
 	}
 	
+	/**
+	 * Awards points
+	 */
 	public void awardPoints() {
 		this.score += 10;
 	}
 	
+	/**
+	 * Decreases bread
+	 */
 	public void decreaseBread(){
 		counter -= 1;
 		breadThrown.play();
 	}
 	
+	/**
+	 * Testing method. Prints to console that mouse has been clicked
+	 */
 	public void mouseClicked(){
 		System.out.println("Clicked");
 	}
 
 	
+	/**
+	 * 
+	 * @return true when game is over
+	 */
 	public Boolean getGameOver(){
 		return gameOver;
 	}
 	
+	/**
+	 * @return counter (the amount of bread left)
+	 */
 	public int getCounter(){
 		return counter;
 	}
 	
+	/**
+	 * Draw instructions for end of game summary
+	 * @param g
+	 */
 	public void summary(Graphics g){
 		clapping.play();
 		g.setColor(Color.RED);
@@ -97,6 +130,12 @@ public class Player extends JPanel{
 		g.drawString("SCORE:  " + score, 325, 60);
 	}
 	
+	/**
+	 * reads in audiofile from URL
+	 * ***Borrowed from Jack Tompkins, UNCW professor****
+	 * @param filename
+	 * @return safe audioclip object
+	 */
     public AudioClip getAudioClip(String filename) {
         URL url = null;
         try {

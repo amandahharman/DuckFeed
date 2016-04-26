@@ -2,6 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+/**
+ * Controlls the main game panel
+ * @author amandaharman
+ *
+ */
 public class Controller{
 	
 	protected Viewer v;
@@ -14,17 +19,24 @@ public class Controller{
 	private final int FLOOR = 300;
 	private Scope scope;
 
-	
+	/**
+	 * Constructor for controller. Creates ducks and sets scope.
+	 * @param v Viewer class
+	 */
 	public Controller(Viewer v){
 		
 		this.v = v;
 		for (int i = 0; i < duck.length; i++){
-			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR), Color.RED);
+			duck[i] = new Duck((new Random()).nextInt(500), (new Random()).nextInt(FLOOR));
 		}
 		setScope(0,0);
 	
 	}
 
+	/**
+	 * Calls draw methods of objects to be put on main game panel.
+	 * @param g Graphics object
+	 */
 	public void paintModels(Graphics g) {
 		for (int i = 0; i < duck.length; i++){
 			duck[i].draw(g, v);
@@ -32,6 +44,9 @@ public class Controller{
 		scope.draw(g);
 	}
 
+	/**
+	 * Moves ducks
+	 */
 	public void moveDucks(){
 		for (int i = 0; i < duck.length; i++){
 			x = duck[i].getX();
@@ -67,7 +82,13 @@ public class Controller{
 		}
 	}
 	
-	
+	/**
+	 * Returns boolean on whether the duck is hit or not.
+	 * 
+	 * @param eventX clicked x-coord
+	 * @param eventY clicked y-coord
+	 * @return true or false
+	 */
 	public Boolean duckHit(int eventX, int eventY){
 		for (int i = 0; i < duck.length; i++){
 			if ((eventX > duck[i].getX() && eventX < duck[i].getRightX())&& (eventY > duck[i].getY() && eventY < duck[i].getBottomY())){
@@ -78,10 +99,18 @@ public class Controller{
 		
 	}
 	
+	/**
+	 * Sets scope to given integers
+	 * @param x x-coord
+	 * @param y y-coord
+	 */
 	public void setScope(int x, int y){
 		scope = new Scope(x,y);
 	}
 	
+	/**
+	 * Calls repaint after specified delay
+	 */
 	public void rollFrames() {
 		try {
 			Thread.sleep(timeDelay);

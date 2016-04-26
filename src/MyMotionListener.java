@@ -1,15 +1,22 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+/**
+ * Specifies actions based on mouse movements
+ * @author amandaharman
+ *
+ */
 public class MyMotionListener implements MouseMotionListener {
-	
-	protected Player p;
+
 	protected Controller c;
 
-	
-	public MyMotionListener(Controller c, Player p){
+	/**
+	 * constructor
+	 * @param c controller class
+	 */
+	public MyMotionListener(Controller c){
 		this.c = c;
-		this.p = p;
+
 
 	}
 
@@ -17,6 +24,9 @@ public class MyMotionListener implements MouseMotionListener {
 	public void mouseDragged(MouseEvent e) {
 	}
 
+	/**
+	 * Sets scope to mouse location
+	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		c.setScope(e.getX(), e.getY());
