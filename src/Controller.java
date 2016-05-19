@@ -11,13 +11,11 @@ public class Controller{
 	
 	protected Viewer v;
 	private int timeDelay = 4;
-	private Duck[] duck = new Duck[2];
+	private Duck[] duck = new Duck[4];
 	private final int SCREENWIDTH = 800, SCREENHEIGHT = 800;
-	private int xDirection = 1; //Right if positive, Left if negative
-	private int yDirection = 1;// Down if positive, Up if negative
-	private int x, y;
 	private final int FLOOR = 300;
 	private Scope scope;
+
 
 	/**
 	 * Constructor for controller. Creates ducks and sets scope.
@@ -49,34 +47,32 @@ public class Controller{
 	 */
 	public void moveDucks(){
 		for (int i = 0; i < duck.length; i++){
-			x = duck[i].getX();
-			y = duck[i].getY();
 
 			//Setting bounds
-			if (y + yDirection + duck[i].getDiameter() >= FLOOR){
-				yDirection = -1;
+			if (duck[i].getY() + duck[i].getYDirection() + duck[i].getDiameter() >= FLOOR){
+				duck[i].setYDirection(-1);
 			}
-			if (y <=0 && yDirection < 0){
-				yDirection = 1;
+			if (duck[i].getY() <=0 && duck[i].getYDirection() < 0){
+				duck[i].setYDirection(1);
 			}
-			if (x <= 1 && xDirection < 0){
-				xDirection = 1;
+			if (duck[i].getX() <= 1 && duck[i].getXDirection() < 0){
+				duck[i].setXDirection(1);
 			}
-			if (x + xDirection + duck[i].getDiameter() >= SCREENWIDTH){
-				xDirection = -1;
+			if (duck[i].getX() + duck[i].getXDirection() + duck[i].getDiameter() >= SCREENWIDTH){
+				duck[i].setXDirection(-1);
 
 			}
 
 
-			if (x + xDirection + duck[i].getDiameter() < SCREENWIDTH && xDirection > 0){
-				duck[i].setX(x+xDirection);
-				duck[i].setY(y+ yDirection);
+			if (duck[i].getX() + duck[i].getXDirection() + duck[i].getDiameter() < SCREENWIDTH && duck[i].getXDirection() > 0){
+				duck[i].setX(duck[i].getX() + duck[i].getXDirection());
+				duck[i].setY(duck[i].getY()+ duck[i].getYDirection());
 				duck[i].duckMovesRight();
 			}
 			
-			if  (x + xDirection  < SCREENWIDTH && xDirection < 0 && x>0){
-				duck[i].setX(x + xDirection);
-				duck[i].setY(y+ yDirection);
+			if  (duck[i].getX() + duck[i].getXDirection()  < SCREENWIDTH && duck[i].getXDirection() < 0 && duck[i].getX() >0){
+				duck[i].setX(duck[i].getX() + duck[i].getXDirection());
+				duck[i].setY(duck[i].getY()+ duck[i].getYDirection());
 				duck[i].duckMovesLeft();
 			}
 		}

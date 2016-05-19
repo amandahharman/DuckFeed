@@ -16,6 +16,8 @@ public class Duck {
 	private static final int DIAMETER = 80;
 	private static final int HEIGHT = 70;
 	private ImageIcon duckImage;
+	private int xDirection; //Right if positive, Left if negative
+	private int yDirection; // Down if positive, Up if negative
 	
 	/**
 	 * Constructs duck object 
@@ -28,6 +30,8 @@ public class Duck {
 		xLeft = x;
 		yTop = y;	
 		duckImage =  new ImageIcon("duckFlipped.png");
+		xDirection = 1;
+		yDirection = 1;
 	}
 
 	/**
@@ -113,4 +117,24 @@ public class Duck {
 	public void duckMovesLeft(){
 		duckImage = new ImageIcon("duck .png");
 	}
+	
+	public void setXDirection(int x) {
+		xDirection = x;
+		
+	}
+	
+	public void setYDirection(int y) {
+		yDirection = y;
+		
+	}
+	
+	public int getXDirection(){
+		return xDirection;
+	}
+	public int getYDirection(){
+		return yDirection;
+	}
+
+
+	
 }
