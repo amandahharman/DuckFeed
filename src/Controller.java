@@ -11,7 +11,7 @@ public class Controller{
 	
 	protected Viewer v;
 	private int timeDelay = 4;
-	private Duck[] duck = new Duck[1];
+	private Duck[] duck = new Duck[2];
 	private final int SCREENWIDTH = 800, SCREENHEIGHT = 800;
 	private int xDirection = 1; //Right if positive, Left if negative
 	private int yDirection = 1;// Down if positive, Up if negative
